@@ -13,60 +13,64 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 using Microsoft.AspNetCore.Authorization;
-
-
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Microsoft.AspNetCore.Identity;
 
 namespace Manage_core.Controllers
 { 
     public class UsersController : Controller
     {
-        private readonly UserContext _context;
-
-        public UsersController(UserContext context)
+       private readonly UserContext _context;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        public UsersController(
+        SignInManager<IdentityUser> signInManager,
+        UserManager<IdentityUser> userManager,
+        UserContext context
+        )
         {
+            _signInManager = signInManager;
+            _userManager = userManager;
             _context = context;
         }
 
         // GET: Users
+        
         public async Task<IActionResult> Login()
         {
+         
+            return View();
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(User user)
+        {
+
+            var use = await _userManager.FindByNameAsync(user.UserName);
+            if (use != null) {
+                var result = _signInManager.PasswordSignInAsync(use, user.PassWord, false, false);
+                if(result.Result.Succeeded){
+                    return View("/Views/Menu/HomePage.cshtml");
+                }
+            }
+            ModelState.AddModelError("", "用户名或密码不正确");
+            return View(user);
+        }
+        public IActionResult Register(){
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(string name,string password){
-            if (name.Equals("admin@q") && password.Equals("123456"))
-
-            {
-
-                var claims = new List<Claim>(){
-
-         new Claim(ClaimTypes.Name,name),new Claim("password",password)
-
-};
-
-                var userPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, "Customer"));
-
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, new AuthenticationProperties
-
-                {
-
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
-
-                    IsPersistent = false,
-
-                    AllowRefresh = false
-
-                });
-               var user= await _context.User.ToListAsync();
-                return View("Index",user);
-
+        public async Task<IActionResult> Register(User user)
+        {
+            if(ModelState.IsValid){
+                var use = new IdentityUser { UserName = user.UserName };
+                var result = await _userManager.CreateAsync(use, user.PassWord);
+                if(result.Succeeded){
+                    return RedirectToAction("Login", "Users");
+                }
             }
-
-            return Json(new { result = false, msg = "用户名密码错误!" });
-
-
+            return View(user);
         }
-
     }
-}
+    }

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Manage_core.Models.Personal>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marriage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HouseHold)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rear)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marriage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseHold)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rear)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdentityCard">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdentityCard">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdentityCard">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

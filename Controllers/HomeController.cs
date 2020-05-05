@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Manage_core.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Manage_core.Controllers
 {
@@ -22,14 +23,14 @@ namespace Manage_core.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();
         }
 
         public IActionResult Login()
-        {
+        {    
             return View("Privacy");
         }
 

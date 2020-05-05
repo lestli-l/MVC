@@ -15,5 +15,7 @@ namespace Manage_core.Data
         }
 
         public DbSet<Manage_core.Models.User> User { get; set; }
+
+        public DbSet<Manage_core.Models.Personal> Personal { get; set; }
     }
 }
