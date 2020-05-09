@@ -4,14 +4,16 @@ using Manage_core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Manage_core.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20200507084825_no")]
+    partial class no
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,14 +82,14 @@ namespace Manage_core.Migrations
                     b.Property<int>("Sex")
                         .HasColumnType("int");
 
-                    b.Property<string>("WorkNumber")
+                    b.Property<string>("WorkId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdentityCard");
 
-                    b.HasIndex("WorkNumber")
+                    b.HasIndex("WorkId")
                         .IsUnique()
-                        .HasFilter("[WorkNumber] IS NOT NULL");
+                        .HasFilter("[WorkId] IS NOT NULL");
 
                     b.ToTable("Personal");
                 });
@@ -117,7 +119,7 @@ namespace Manage_core.Migrations
                 {
                     b.HasOne("Manage_core.Models.Employee", "Employee")
                         .WithOne("Personal")
-                        .HasForeignKey("Manage_core.Models.Personal", "WorkNumber");
+                        .HasForeignKey("Manage_core.Models.Personal", "WorkId");
                 });
 #pragma warning restore 612, 618
         }

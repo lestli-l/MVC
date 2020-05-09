@@ -13,9 +13,16 @@ namespace Manage_core.Data
             : base(options)
         {
         }
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+            modelBuilder.Entity<Personal>().HasOne(x => x.Employee).WithOne(x => x.Personal).HasForeignKey<Personal>(x => x.WorkNumber);
+        }
         public DbSet<Manage_core.Models.User> User { get; set; }
 
         public DbSet<Manage_core.Models.Personal> Personal { get; set; }
+
+        public DbSet<Manage_core.Models.Employee> Employee { get; set; }
+
     }
 }

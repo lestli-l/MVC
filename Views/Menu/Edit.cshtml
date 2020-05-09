@@ -9,49 +9,112 @@
 <h4>Personal</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+    <div class="col-md-12">
+        <form asp-action="Edit" style="padding-left:100px;">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdentityCard" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" readonly />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label asp-for="Sex" class="control-label"></label>
+                        <select asp-items="@Html.GetEnumSelectList(typeof(Sex))" class="form-control"></select>
+                        <span asp-validation-for="Sex" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="Birthday" class="control-label"></label>
+                        <input asp-for="Birthday" class="form-control" />
+                        <span asp-validation-for="Birthday" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label asp-for="Marriage" class="control-label"></label>
+                        <select asp-items="@Html.GetEnumSelectList(typeof(Marriage))" class="form-control"></select>
+                        <span asp-validation-for="Marriage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Photo" class="control-label"></label>
+                        <input asp-for="Photo" class="form-control" readonly />
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label asp-for="Nation" class="control-label"></label>
+                        <input asp-for="Nation" class="form-control" />
+                        <span asp-validation-for="Nation" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="HouseHold" class="control-label"></label>
+                        <input asp-for="HouseHold" class="form-control" />
+                        <span asp-validation-for="HouseHold" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-5">
+                    <label asp-for="Rear" class="control-label"></label>
+                    <select asp-items="@Html.GetEnumSelectList(typeof(Rear))" class="form-control"></select>
+                    <span asp-validation-for="Rear" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Birthday" class="control-label"></label>
-                <input asp-for="Birthday" class="form-control" />
-                <span asp-validation-for="Birthday" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Marriage" class="control-label"></label>
-                <select asp-for="Marriage" class="form-control"></select>
-                <span asp-validation-for="Marriage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Photo" class="control-label"></label>
-                <input asp-for="Photo" class="form-control" />
-                <span asp-validation-for="Photo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sex" class="control-label"></label>
-                <select asp-for="Sex" class="form-control"></select>
-                <span asp-validation-for="Sex" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nation" class="control-label"></label>
-                <input asp-for="Nation" class="form-control" />
-                <span asp-validation-for="Nation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HouseHold" class="control-label"></label>
-                <input asp-for="HouseHold" class="form-control" />
-                <span asp-validation-for="HouseHold" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rear" class="control-label"></label>
-                <select asp-for="Rear" class="form-control"></select>
-                <span asp-validation-for="Rear" class="text-danger"></span>
+            <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color="#6f5499" size="3" />
+            <div class="col-md-6">
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label asp-for="WorkNumber" class="control-label"></label>
+                        <input asp-for="WorkNumber" class="form-control" readonly />
+                        <span asp-validation-for="WorkNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Employee.IdCard" class="control-label"></label>
+                        <input asp-for="Employee.IdCard" class="form-control" />
+                        <span asp-validation-for="Employee.IdCard" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label asp-for="Employee.WorkState" class="control-label"></label>
+                        <select asp-items="@Html.GetEnumSelectList(typeof(WorkState))" class="form-control"></select>
+                        <span asp-validation-for="Employee.WorkState" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Employee.DateOfJoin" class="control-label"></label>
+                        <input asp-for="Employee.DateOfJoin" class="form-control" />
+                        <span asp-validation-for="Employee.DateOfJoin" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label asp-for="Employee.ClassOfEmployee" class="control-label"></label>
+                        <select asp-items="@Html.GetEnumSelectList(typeof(ClassOfEmployee))" class="form-control"></select>
+                        <span asp-validation-for="Employee.ClassOfEmployee" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Employee.ClassOfSalary" class="control-label"></label>
+                        <select asp-items="@Html.GetEnumSelectList(typeof(ClassOfSalary))" class="form-control"></select>
+                        <span asp-validation-for="Employee.ClassOfSalary" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label asp-for="Employee.LeaveDate" class="control-label"></label>
+                        <input asp-for="Employee.LeaveDate" class="form-control" />
+                        <span asp-validation-for="Employee.LeaveDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Employee.ReasonOfLeaveing" class="control-label"></label>
+                        <input asp-for="Employee.ReasonOfLeaveing" class="form-control" />
+                        <span asp-validation-for="Employee.ReasonOfLeaveing" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -61,6 +124,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="List">Back to List</a>
 </div>
 

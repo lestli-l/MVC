@@ -57,6 +57,7 @@ namespace Manage_core.Controllers
             ModelState.AddModelError("", "用户名或密码不正确");
             return View(user);
         }
+       
         public IActionResult Register(){
             return View();
         }

@@ -67,11 +67,15 @@
                 @Html.DisplayFor(modelItem => item.Rear)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdentityCard">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdentityCard">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdentityCard">Delete</a>
+   
+                <a role="button" class="btn btn-primary" style="text-decoration:none" asp-action="Edit" asp-route-identitycard="@item.IdentityCard">Edit</a> 
+                <a role="button" class="btn btn-primary" style="text-decoration:none" asp-action="Details"asp-route-identitycard="@item.IdentityCard">Details</a> 
+                <a role="button" class="btn btn-primary" style="text-decoration:none" asp-action="Delete" asp-route-identitycard="@item.IdentityCard">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+<script>
+
+</script>
